@@ -11,7 +11,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use('/api/auth', authRouter)
-server.use('/api/plants', restricted, plantsRouter)
+server.use('/api/plants', plantsRouter)
 
 server.get('/testing', (req, res) => {
     res.json({message: 'testing message'})
