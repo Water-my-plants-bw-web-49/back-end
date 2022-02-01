@@ -3,15 +3,15 @@ const router = require('express').Router()
 
 router.post('/', (req, res, next) => {
     // Authenticated user can Create, a plant
-    res.json({message: 'plants post endpoint successful call'})
+    
 })
 router.put('/:id', (req, res, next) => {
     // Authenticated user can update a plant
-    res.json({message: 'plants id put endpoint successful call'})
+    
 })
 router.delete('/:id', (req, res, next) => {
     // Authenticated user can delete a plant
-    res.json({message: 'plants delete endpoint successful call'})
+    
 })
 router.get('/', (req, res, next) => {
     // Authenticated user can view a list of created plants.
