@@ -4,4 +4,4 @@ function getPlants() {
   return db("plants");
 }
 
-module.exports = {};
+module.exports = { getPlants };
