@@ -27,7 +27,6 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", validatePlantId, (req, res, next) => {
   // A plant can be selected to present user
-  //needs id validation
   const { id } = req.params;
 
   Plant.getPlantById(id)
