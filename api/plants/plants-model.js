@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const db = require("../../data/dbConfig");
 
 function getPlants() {

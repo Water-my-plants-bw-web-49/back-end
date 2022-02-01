@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const Plant = require("./plants-model");
+const { validatePlantId } = require("./plants-middleware");
 
 router.post("/", (req, res, next) => {
   // Authenticated user can Create, a plant
@@ -24,7 +25,7 @@ router.get("/", (req, res, next) => {
     });
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", validatePlantId, (req, res, next) => {
   // A plant can be selected to present user
   //needs id validation
   const { id } = req.params;
