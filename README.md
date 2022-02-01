@@ -1,6 +1,17 @@
 # back-end
 The back end of the water my plants repo.
 
+ENDPOINTS
+
+REGISTER
+bw-water-my-plants-backend.herokuapp.com/api/auth/register
+LOGIN
+bw-water-my-plants-backend.herokuapp.com/api/auth/login
+PLANTS
+bw-water-my-plants-backend.herokuapp.com/api/plants   
+PLANTS/:id
+bw-water-my-plants-backend.herokuapp.com/api/plants/:id
+
 1. `user` can sign-up / create an account by providing a unique `username`, a valid mobile `phoneNumber` and a `password`. 
 2. `user` can login to an authenticated session using the credentials provided at account creation / signup.
 3. Authenticated `user` can Create, Update and Delete a `plant` object. At a minimum, each `plant` must have the following properties: 
