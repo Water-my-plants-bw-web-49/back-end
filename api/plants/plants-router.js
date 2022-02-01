@@ -11,6 +11,7 @@ router.put("/:id", (req, res, next) => {
 
 router.delete("/:id", validatePlantId, async (req, res, next) => {
   // Authenticated user can delete a plant
+  //needs restricted middleware
   const { id } = req.params;
 
   await Plant.deletePlant(id)
@@ -20,10 +21,6 @@ router.delete("/:id", validatePlantId, async (req, res, next) => {
     .catch((err) => {
       next(err);
     });
-  // .then(res.status(204).json({ message: `Plant ${id} deleted!` }))
-  // .catch(next());
-
-  //   res.json({ message: "deleting..." });
 });
 
 router.get("/", (req, res, next) => {
