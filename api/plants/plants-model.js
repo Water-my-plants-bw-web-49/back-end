@@ -6,6 +6,7 @@ function getPlants() {
 
 async function getPlantById(plant_id) {
   const plantRows = await db("plants").select().where("id", plant_id);
+  return plantRows;
 }
 
 module.exports = { getPlants, getPlantById };
