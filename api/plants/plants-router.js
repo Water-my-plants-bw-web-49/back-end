@@ -12,12 +12,12 @@ router.delete("/:id", (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
+  //This is up and running now, returns the list of plants.
   // Authenticated user can view a list of created plants.
   //this needs restricted middleware at least, not sure if it needs anything else. -AH
   Plant.getPlants().then((plants) => {
     res.status(201).json(plants);
   });
-  //   res.json({ message: "plants get endpoint successful call" });
 });
 
 router.get("/:id", (req, res, next) => {
