@@ -27,7 +27,6 @@ router.get("/", (req, res, next) => {
 router.get("/:id", (req, res, next) => {
   // A plant can be selected to present user
   //needs id validation
-  //   console.log("req.params.id:", req.params.id);
   const { id } = req.params;
 
   Plant.getPlantById(id)
@@ -37,9 +36,8 @@ router.get("/:id", (req, res, next) => {
     .catch((err) => {
       res.status(500).json({ message: err.message });
     });
-
-  //   res.json({ message: "plants id get endpoint successful call" });
 });
+
 // router.verb('/', (req, res, next) => {
 
 // })
