@@ -8,8 +8,9 @@ router.post("/", (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   // Authenticated user can update a plant
 });
-router.delete("/:id", (req, res, next) => {
+router.delete("/:id", validatePlantId, (req, res, next) => {
   // Authenticated user can delete a plant
+  res.json({ message: "deleting..." });
 });
 
 router.get("/", (req, res, next) => {
