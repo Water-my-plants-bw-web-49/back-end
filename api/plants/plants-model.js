@@ -4,4 +4,8 @@ function getPlants() {
   return db("plants");
 }
 
-module.exports = { getPlants };
+async function getPlantById(plant_id) {
+  const plantRows = await db("plants").select().where("id", plant_id);
+}
+
+module.exports = { getPlants, getPlantById };
