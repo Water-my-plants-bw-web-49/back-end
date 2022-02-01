@@ -8,9 +8,22 @@ router.post("/", (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   // Authenticated user can update a plant
 });
-router.delete("/:id", validatePlantId, (req, res, next) => {
+
+router.delete("/:id", validatePlantId, async (req, res, next) => {
   // Authenticated user can delete a plant
-  res.json({ message: "deleting..." });
+  const { id } = req.params;
+
+  await Plant.deletePlant(id)
+    .then(() => {
+      res.status(201).json({ message: "plant deleted" });
+    })
+    .catch((err) => {
+      next(err);
+    });
+  // .then(res.status(204).json({ message: `Plant ${id} deleted!` }))
+  // .catch(next());
+
+  //   res.json({ message: "deleting..." });
 });
 
 router.get("/", (req, res, next) => {

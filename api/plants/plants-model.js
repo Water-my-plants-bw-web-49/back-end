@@ -10,8 +10,8 @@ async function getPlantById(plant_id) {
   return plantRows;
 }
 
-async function deletePlant(plant_id) {
+async function deletePlant(id) {
   return db("plants").where({ id }).del();
 }
 
-module.exports = { getPlants, getPlantById };
+module.exports = { getPlants, getPlantById, deletePlant };
