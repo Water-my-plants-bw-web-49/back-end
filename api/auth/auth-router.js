@@ -2,17 +2,20 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const { JWT_SECRET } = require("../../secrets");
 const jwt = require('jsonwebtoken')
+const User = require('../users/users-model')
+const { checkUsernameExists } = require('./auth-middleware')
 
-router.post('/register', (req, res, next) => {
-    // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
-    let user = req.body
-    const hash = bcrypt.hashSync(user.password, 8)
-    user.password = hash
-    User.add(user)
-      .then(newUser => {
-        res.status(201).json(newUser)
-      })
-      .catch(next)
+router.post(
+    '/register',   
+    checkUsernameExists, (req, res, next) => {
+        let user = req.body
+        const hash = bcrypt.hashSync(user.password, 8)
+        user.password = hash
+        User.add(user)
+        .then(newUser => {
+            res.status(201).json(newUser)
+        })
+        .catch(next)
     
 })
 
