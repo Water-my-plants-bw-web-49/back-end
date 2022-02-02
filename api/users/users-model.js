@@ -9,13 +9,13 @@ function findBy(filter) {
 }
 
 async function add(user) {
-    const [ user_id ] = await db('users').insert(user)
-    return findById(user_id)
+    const [ id ] = await db('users').insert(user)
+    return findById(id)
 }
 
 function findById(user_id) {
     return db('users')
-        .where({ id }).first()
+        .where({ user_id }).first()
 }
 
 module.exports = {
