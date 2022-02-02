@@ -5,8 +5,10 @@ const { validatePlantId } = require("./plants-middleware");
 router.post("/", (req, res, next) => {
   // Authenticated user can Create, a plant
 });
-router.put("/:id", (req, res, next) => {
+
+router.put("/:id", validatePlantId, (req, res, next) => {
   // Authenticated user can update a plant
+  res.status(200).json({ message: "putting..." });
 });
 
 router.delete("/:id", validatePlantId, async (req, res, next) => {
