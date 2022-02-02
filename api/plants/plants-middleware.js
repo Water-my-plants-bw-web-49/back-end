@@ -14,9 +14,15 @@ function validateNewPlant(req, res, next) {
   const { plant, nickname, species, h2ofrequency } = req.body;
   console.log(plant, nickname, species, h2ofrequency);
 
-  !plant || !nickname || !species || !h2ofrequency
-    ? res.status(404).json({ message: "please fill out all required fields" })
-    : next();
+  if (!plant || !nickname || !species || !h2ofrequency) {
+    res.status(404).json({ message: "please fill out all required fields" });
+  } else if (plant.length > 128 || nickname.length > 128) {
+    res.status(404).json({
+      message: "plant name and plant nickname must be less than 128 characters",
+    });
+  } else {
+    next();
+  }
 }
 
 function validatePlantPut(req, res, next) {
