@@ -14,4 +14,11 @@ async function deletePlant(id) {
   return db("plants").where({ id }).del();
 }
 
-module.exports = { getPlants, getPlantById, deletePlant };
+function updatePlant(id, changes) {
+  return db("plants")
+    .where("id", id)
+    .update(changes)
+    .then((count) => (count > 0 ? get(id) : null));
+}
+
+module.exports = { getPlants, getPlantById, deletePlant, updatePlant };
