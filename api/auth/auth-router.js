@@ -1,9 +1,9 @@
-// const router = require('express').Router();
-// const bcrypt = require('bcryptjs')
+const router = require('express').Router();
+const bcrypt = require('bcryptjs')
 // const User = require('../users/users-model')
 // const { checkUsernameExists, unAndPassRequired  } = require('./auth-middleware')
-// const { JWT_SECRET } = require('../../secrets');
-// const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = require('../../secrets');
+const jwt = require('jsonwebtoken')
 
 // router.post('/register', (req, res, next) => {
 //     // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
@@ -46,11 +46,11 @@
 // }
 
 // // endpoints for testing
-// router.get('/login', (req, res, next) => {
-//     res.json({message: 'login endpoint successful call'})
-// })
-// router.get('/register', (req, res, next) => {
-//     res.json({message: 'register endpoint successful call'})
-// })
+router.get('/login', (req, res, next) => {
+    res.json({message: 'login endpoint successful call'})
+})
+router.get('/register', (req, res, next) => {
+    res.json({message: 'register endpoint successful call'})
+})
 
-// module.exports = router
+module.exports = router
