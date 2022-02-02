@@ -4,6 +4,7 @@ const { validatePlantId, validatePlantPut } = require("./plants-middleware");
 
 router.post("/", (req, res, next) => {
   // Authenticated user can Create, a plant
+  //this needs restricted middleware
 });
 
 router.put(
@@ -12,6 +13,7 @@ router.put(
   validatePlantPut,
   async (req, res, next) => {
     // Authenticated user can update a plant
+    //this needs restricted middleware
 
     await Plant.updatePlant(req.params.id, req.body)
       .then((updatedPlant) => {
@@ -38,7 +40,6 @@ router.delete("/:id", validatePlantId, async (req, res, next) => {
 });
 
 router.get("/", (req, res, next) => {
-  //This is up and running now, returns the list of plants.
   // Authenticated user can view a list of created plants.
   //this needs restricted middleware at least, not sure if it needs anything else. -AH
   Plant.getPlants()
@@ -52,6 +53,7 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", validatePlantId, (req, res, next) => {
   // A plant can be selected to present user
+  //this needs restricted middleware
   const { id } = req.params;
 
   Plant.getPlantById(id)
@@ -69,7 +71,7 @@ router.get("/:id", validatePlantId, (req, res, next) => {
 
 module.exports = router;
 
-//dummy put request:
+//dummy put request (delete when no longer needed):
 // {
 //     "plant": "test123",
 //     "nickname": "nickname123",

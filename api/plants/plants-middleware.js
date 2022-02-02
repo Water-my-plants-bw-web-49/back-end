@@ -12,12 +12,11 @@ const validatePlantId = async (req, res, next) => {
 
 function validatePlantPut(req, res, next) {
   const { plant, nickname, species, h2ofrequency } = req.body;
-  const { id } = req.params;
 
   !plant && !nickname && !species && !h2ofrequency
     ? res
         .status(404)
-        .json({ message: "Please include at least one item to update!" })
+        .json({ message: "Please include at least one item to update" })
     : next();
 }
 
