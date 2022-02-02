@@ -5,7 +5,7 @@ const { checkUsernameExists, unAndPassRequired  } = require('./auth-middleware')
 const { JWT_SECRET } = require('../../secrets');
 const jwt = require('jsonwebtoken')
 
-router.post('/register', checkUsernameExists, (req, res, next) => {
+router.post('/register', (req, res, next) => {
     // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
