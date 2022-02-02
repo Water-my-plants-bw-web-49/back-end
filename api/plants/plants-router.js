@@ -70,16 +70,4 @@ router.get("/:id", validatePlantId, (req, res, next) => {
     });
 });
 
-// router.verb('/', (req, res, next) => {
-
-// })
-
 module.exports = router;
-
-//dummy put request (delete when no longer needed):
-// {
-//     "plant": "test123",
-//     "nickname": "nickname123",
-//     "species": "species123",
-//     "h2ofrequency": "h20123"
-// }

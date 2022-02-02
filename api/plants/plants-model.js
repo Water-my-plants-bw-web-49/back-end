@@ -1,5 +1,3 @@
-const req = require("express/lib/request");
-const res = require("express/lib/response");
 const db = require("../../data/dbConfig");
 
 function getPlants() {
@@ -23,7 +21,6 @@ function updatePlant(id, changes) {
 }
 
 function findBy(filter) {
-  //this is untested
   return db("plants").where(filter); // {username: "foo"}
 }
 
