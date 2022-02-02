@@ -1,33 +1,34 @@
+
 const { findBy } = require('../users/users-model')
 
 const checkUsernameExists = async (req, res, next) => {
+ 
     try {
-        const [ user ] = await findBy({username: req.body.username})
-        if(user){
-            next({
-                status: 401, 
-                message: 'Oops username taken! Please choose another.'})
-        } else {
-            next()
-        }
-    } catch(err) {
-        next(err)
+      const [user] = await findBy({username: req.body.username})
+      if(user) {
+        next({status: 401, message: 'Oops username taken! Please select another one.'})
+      } else {
+        req.user = user
+        next()
+      }
+    } catch (err) {
+      next(err)
     }
-}
+  }
 
-// const registrationRequired = (res, req, next) => {
-//     const { pnumber } = req.body
-//     if(!pnumber){
-//         next({
-//             status: 401,
-//             message: 'Uh Oh! Phone number is required.'
-//         })
-//     } else {
-//         next()
-//     }
-// }
+  const unAndPassRequired = (req, res, next) => {
+    const {username, password} = req.body
+    if(!username || !password) {
+        next({
+            status: 401, 
+            message: "username and password required",
+        })
+    } else {
+        next()
+    }
+  }
 
-module.exports = {
+  module.exports = {
     checkUsernameExists,
-    // registrationRequired,
-}
+    unAndPassRequired,
+  }

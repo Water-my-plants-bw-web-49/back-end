@@ -1,9 +1,11 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs');
-const { JWT_SECRET } = require("../../secrets");
+const bcrypt = require('bcryptjs')
+const User = require('../users/users-model')
+const { checkUsernameExists, unAndPassRequired  } = require('./auth-middleware')
+const { JWT_SECRET } = require('../../secrets');
 const jwt = require('jsonwebtoken')
 
-router.post('/register', (req, res, next) => {
+router.post('/register', checkUsernameExists, (req, res, next) => {
     // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
     let user = req.body
     const hash = bcrypt.hashSync(user.password, 8)
@@ -16,31 +18,31 @@ router.post('/register', (req, res, next) => {
     
 })
 
-router.post('/login', (req, res, next) => {
+router.post('/login', unAndPassRequired, (req, res, next) => {
     // user can login to an authenticated session using the credentials provided at account creation / signup.
     let { username, password } = req.body
 
-  User.findBy({ username })
-    .then(([user]) => {
-      if (user && bcrypt.compareSync(password, user.password)) {
-        const token = buildToken(user)
-        res.status(200).json({ message: `welcome ${user.username}`, token })
-      } else {
-        next({ status: 401, message: 'invalid Credentials' })
-      }
-    })
-    .catch(next)
+    User.findBy({ username })
+      .then(([user]) => {
+        if (user && bcrypt.compareSync(password, user.password)) {
+          const token = buildToken(user)
+          res.status(200).json({ message: `welcome ${user.username}`, token })
+        } else {
+          next({ status: 401, message: 'invalid Credentials' })
+        }
+      })
+      .catch(next)
 })
 
 function buildToken(user) {
-    const payload = {
-        username: user.username,
-        password: user.password,
-    }
-    const options = {
-        expiresIn: '2d',
-    }
-    return jwt.sign(payload, JWT_SECRET, options)
+  const payload = {
+    username: user.username,
+    password: user.password
+  }
+  const options = {
+    expiresIn: '1d',
+  }
+  return jwt.sign(payload, JWT_SECRET, options)
 }
 
 // endpoints for testing
