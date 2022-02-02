@@ -15,7 +15,6 @@ async function validateNewPlant(req, res, next) {
   //validates that the request has the four necessary fields, that name and nickname are less than 128 characters, and that name and nickname are unique.
 
   const { plant, nickname, species, h2ofrequency } = req.body;
-  const testPlant = await Plant.findBy({ plant: plant });
 
   const isPlant = await Plant.findBy({ plant: plant });
   const isNickname = await Plant.findBy({ nickname: nickname });
