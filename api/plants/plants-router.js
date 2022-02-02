@@ -33,7 +33,7 @@ router.put(
         res.status(200).json(updatedPlant);
       })
       .catch((err) => {
-        res.status(404).json(err);
+        next(err);
       });
   }
 );
@@ -42,10 +42,10 @@ router.delete("/:id", validatePlantId, async (req, res, next) => {
   // Authenticated user can delete a plant
   //needs restricted middleware
   const { id } = req.params;
-
   await Plant.deletePlant(id)
     .then(() => {
-      res.status(201).json({ message: "plant deleted" });
+      res.status(200).json({ message: "plant deleted" });
+
     })
     .catch((err) => {
       next(err);
@@ -57,12 +57,14 @@ router.get("/", (req, res, next) => {
   //this needs restricted middleware at least, not sure if it needs anything else. -AH
   Plant.getPlants()
     .then((plants) => {
-      res.status(201).json(plants);
+
+      res.status(200).json(plants);
     })
     .catch((err) => {
-      res.status(500).json({ message: err.message });
+      next(err);
     });
 });
+//status code correct (delete this note later)
 
 router.get("/:id", validatePlantId, (req, res, next) => {
   // A plant can be selected to present user
@@ -71,11 +73,11 @@ router.get("/:id", validatePlantId, (req, res, next) => {
 
   Plant.getPlantById(id)
     .then((plant) => {
-      res.status(201).json(plant);
+      res.status(200).json(plant);
     })
     .catch((err) => {
-      res.status(500).json({ message: err.message });
+      next(err);
     });
 });
-
 module.exports = router;
+
