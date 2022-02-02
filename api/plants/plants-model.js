@@ -22,4 +22,9 @@ function updatePlant(id, changes) {
     .then((count) => (count > 0 ? getPlantById(id) : null));
 }
 
-module.exports = { getPlants, getPlantById, deletePlant, updatePlant };
+function findBy(filter) {
+  //this is untested
+  return db("plants").where(filter); // {username: "foo"}
+}
+
+module.exports = { getPlants, getPlantById, deletePlant, updatePlant, findBy };
