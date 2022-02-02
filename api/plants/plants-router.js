@@ -11,7 +11,6 @@ router.post("/", validateNewPlant, async (req, res, next) => {
   // Authenticated user can Create, a plant
   //this needs restricted middleware
 
-  console.log("req.body:", req.body);
   await Plant.insert(req.body)
     .then((plant) => {
       res.status(201).json(plant);
