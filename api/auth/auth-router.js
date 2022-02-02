@@ -1,22 +1,22 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs')
-// const User = require('../users/users-model')
+const User = require('../users/users-model')
 // const { checkUsernameExists, unAndPassRequired  } = require('./auth-middleware')
 const { JWT_SECRET } = require('../../secrets');
 const jwt = require('jsonwebtoken')
 
-// router.post('/register', (req, res, next) => {
-//     // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
-//     let user = req.body
-//     const hash = bcrypt.hashSync(user.password, 8)
-//     user.password = hash
-//     User.add(user)
-//       .then(newUser => {
-//         res.status(201).json(newUser)
-//       })
-//       .catch(next)
+router.post('/register', (req, res, next) => {
+    // user can sign-up / create an account by providing a unique username, a valid mobile phoneNumber and a password.
+    let user = req.body
+    const hash = bcrypt.hashSync(user.password, 8)
+    user.password = hash
+    User.add(user)
+      .then(newUser => {
+        res.status(201).json(newUser)
+      })
+      .catch(next)
     
-// })
+})
 
 // router.post('/login', unAndPassRequired, (req, res, next) => {
 //     // user can login to an authenticated session using the credentials provided at account creation / signup.
