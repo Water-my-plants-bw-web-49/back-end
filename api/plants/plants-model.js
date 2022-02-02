@@ -18,7 +18,7 @@ function updatePlant(id, changes) {
   return db("plants")
     .where("id", id)
     .update(changes)
-    .then((count) => (count > 0 ? get(id) : null));
+    .then((count) => (count > 0 ? getPlantById(id) : null));
 }
 
 module.exports = { getPlants, getPlantById, deletePlant, updatePlant };

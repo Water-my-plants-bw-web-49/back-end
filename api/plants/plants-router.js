@@ -6,9 +6,18 @@ router.post("/", (req, res, next) => {
   // Authenticated user can Create, a plant
 });
 
-router.put("/:id", validatePlantId, (req, res, next) => {
+router.put("/:id", validatePlantId, async (req, res, next) => {
   // Authenticated user can update a plant
-  res.status(200).json({ message: "putting..." });
+
+  await Plant.updatePlant(req.params.id, req.body)
+    .then((updatedPlant) => {
+      res.status(200).json(updatedPlant);
+    })
+    .catch((err) => {
+      res.status(404).json(err);
+    });
+
+  //   res.status(200).json({ message: "putting..." });
 });
 
 router.delete("/:id", validatePlantId, async (req, res, next) => {
@@ -56,3 +65,11 @@ router.get("/:id", validatePlantId, (req, res, next) => {
 // })
 
 module.exports = router;
+
+//dummy put request:
+// {
+//     "plant": "test123",
+//     "nickname": "nickname123",
+//     "species": "species123",
+//     "h2ofrequency": "h20123"
+// }
