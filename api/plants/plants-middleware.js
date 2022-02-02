@@ -12,6 +12,7 @@ const validatePlantId = async (req, res, next) => {
   }
 };
 
+//status code correct (delete this note later)
 async function validateNewPlant(req, res, next) {
   //validates that the request has the four necessary fields, that name and nickname are less than 128 characters, and that name and nickname are unique.
 
@@ -23,13 +24,12 @@ async function validateNewPlant(req, res, next) {
   if (!plant || !nickname || !species || !h2ofrequency) {
     res.status(404).json({ message: "please fill out all required fields" });
   } else if (plant.length > 128 || nickname.length > 128) {
-    res.status(404).json({
+    next({
+      status: 400,
       message: "plant name and plant nickname must be less than 128 characters",
     });
   } else if (isPlant.length > 0 || isNickname.length > 0) {
-    res
-      .status(404)
-      .json({ message: "must pick unique plant name and nickname" });
+    next({ status: 400, message: "must pick unique plant name and nickname" });
   } else {
     next();
   }
@@ -39,9 +39,10 @@ function validatePlantPut(req, res, next) {
   const { plant, nickname, species, h2ofrequency } = req.body;
 
   !plant && !nickname && !species && !h2ofrequency
-    ? res
-        .status(404)
-        .json({ message: "Please include at least one item to update" })
+    ? next({
+        status: 400,
+        message: "Please include at least one item to update",
+      })
     : next();
 }
 
