@@ -1,8 +1,12 @@
 const router = require("express").Router();
 const Plant = require("./plants-model");
-const { validatePlantId, validatePlantPut } = require("./plants-middleware");
+const {
+  validatePlantId,
+  validatePlantPut,
+  validateNewPlant,
+} = require("./plants-middleware");
 
-router.post("/", (req, res, next) => {
+router.post("/", validateNewPlant, (req, res, next) => {
   res.status(200).json({ message: "posting..." });
   // Authenticated user can Create, a plant
   //this needs restricted middleware

@@ -10,6 +10,15 @@ const validatePlantId = async (req, res, next) => {
   }
 };
 
+function validateNewPlant(req, res, next) {
+  const { plant, nickname, species, h2ofrequency } = req.body;
+  console.log(plant, nickname, species, h2ofrequency);
+
+  !plant || !nickname || !species || !h2ofrequency
+    ? res.status(404).json({ message: "please fill out all required fields" })
+    : next();
+}
+
 function validatePlantPut(req, res, next) {
   const { plant, nickname, species, h2ofrequency } = req.body;
 
@@ -22,5 +31,6 @@ function validatePlantPut(req, res, next) {
 
 module.exports = {
   validatePlantId,
+  validateNewPlant,
   validatePlantPut,
 };
