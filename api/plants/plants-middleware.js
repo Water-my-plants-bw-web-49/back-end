@@ -35,6 +35,7 @@ async function validateNewPlant(req, res, next) {
   }
 }
 
+//status code correct (delete this note later)
 function validatePlantPut(req, res, next) {
   const { plant, nickname, species, h2ofrequency } = req.body;
 
