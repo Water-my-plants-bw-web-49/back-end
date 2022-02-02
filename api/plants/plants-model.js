@@ -24,4 +24,20 @@ function findBy(filter) {
   return db("plants").where(filter); // {username: "foo"}
 }
 
-module.exports = { getPlants, getPlantById, deletePlant, updatePlant, findBy };
+function insert(plant) {
+  return db("plants")
+    .insert(plant)
+    .then(([id]) => {
+      console.log("id:", id);
+      return getPlantById(id);
+    });
+}
+
+module.exports = {
+  getPlants,
+  getPlantById,
+  deletePlant,
+  updatePlant,
+  findBy,
+  insert,
+};

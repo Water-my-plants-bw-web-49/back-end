@@ -6,10 +6,19 @@ const {
   validateNewPlant,
 } = require("./plants-middleware");
 
-router.post("/", validateNewPlant, (req, res, next) => {
-  res.status(200).json({ message: "posting..." });
+router.post("/", validateNewPlant, async (req, res, next) => {
+  //   res.status(200).json({ message: "posting..." });
   // Authenticated user can Create, a plant
   //this needs restricted middleware
+
+  console.log("req.body:", req.body);
+  await Plant.insert(req.body)
+    .then((plant) => {
+      res.status(201).json(plant);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 router.put(
