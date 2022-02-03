@@ -1,4 +1,3 @@
-const { emit } = require("nodemon");
 const db = require("../../data/dbConfig");
 const Plant = require("./plants-model");
 
