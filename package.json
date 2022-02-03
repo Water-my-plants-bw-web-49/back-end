@@ -19,18 +19,32 @@
     "@vscode/sqlite3": "^5.0.7",
     "bcryptjs": "^2.4.3",
     "cors": "2.8.5",
+<<<<<<< HEAD
+=======
+    "dotenv": "^16.0.0",
+>>>>>>> 7af4668a2c0929e0c1f6759a70e0364d91aa7e33
     "express": "4.17.1",
     "helmet": "4.6.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^1.0.2",
+<<<<<<< HEAD
     "sqlite3": "5.0.2"
+=======
+    "pg": "^8.7.1",
+    "serve": "^13.0.2",
+    "sqlite3": "^5.0.2"
+>>>>>>> 7af4668a2c0929e0c1f6759a70e0364d91aa7e33
   },
   "devDependencies": {
     "@types/jest": "27.0.3",
     "cross-env": "7.0.3",
     "eslint": "8.4.1",
     "jest": "27.4.4",
+<<<<<<< HEAD
     "nodemon": "2.0.15",
+=======
+    "nodemon": "^2.0.15",
+>>>>>>> 7af4668a2c0929e0c1f6759a70e0364d91aa7e33
     "supertest": "6.1.6"
   }
 }

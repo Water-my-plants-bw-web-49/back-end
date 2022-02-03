@@ -10,12 +10,13 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
 server.use('/api/auth', authRouter)
 server.use('/api/plants', plantsRouter)
 
-server.get('/testing', (req, res) => {
-    res.json({message: 'testing message'})
-})
 
 server.use((err, req, res, next) => { 
     res.status(err.status || 500).json({

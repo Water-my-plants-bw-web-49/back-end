@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7af4668a2c0929e0c1f6759a70e0364d91aa7e33
 const db = require("../../data/dbConfig");
 const Plant = require("./plants-model");
 
